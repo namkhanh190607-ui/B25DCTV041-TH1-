@@ -1,0 +1,170 @@
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. HIỂN THỊ NĂM HIỆN TẠI Ở FOOTER
+  const currentYearEl = document.getElementById("current-year");
+  if (currentYearEl) {
+    currentYearEl.textContent = new Date().getFullYear();
+  }
+
+  // 2. MENU HAMBURGER TRÊN MOBILE
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.getElementById("nav-menu");
+  const navLinks = document.querySelectorAll(".nav-link");
+
+  hamburger.addEventListener("click", () => {
+    navMenu.classList.toggle("active");
+  });
+
+  // Đóng menu khi bấm vào từng mục trên mobile
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("active");
+    });
+  });
+
+  // 3. CHUYỂN ĐỔI DARK / LIGHT MODE (LƯU TRẠNG THÁI VÀO LOCALSTORAGE)
+  const themeToggle = document.getElementById("theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", "dark");
+    themeToggle.textContent = "☀️";
+  }
+
+  themeToggle.addEventListener("click", () => {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    if (isDark) {
+      document.documentElement.removeAttribute("data-theme");
+      localStorage.setItem("theme", "light");
+      themeToggle.textContent = "🌙";
+    } else {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+      themeToggle.textContent = "☀️";
+    }
+  });
+
+  // 4. LỌC & TÌM KIẾM DỰ ÁN THEO TỪ KHÓA VÀ TAG
+  const searchInput = document.getElementById("project-search");
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+  const noProjectsMsg = document.getElementById("no-projects");
+
+  let currentCategory = "all";
+
+  function filterProjects() {
+    const keyword = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    projectCards.forEach((card) => {
+      const category = card.getAttribute("data-category");
+      const textContent = card.textContent.toLowerCase();
+
+      const matchesCategory = currentCategory === "all" || category === currentCategory;
+      const matchesKeyword = textContent.includes(keyword);
+
+      if (matchesCategory && matchesKeyword) {
+        card.classList.remove("hidden");
+        visibleCount++;
+      } else {
+        card.classList.add("hidden");
+      }
+    });
+
+    noProjectsMsg.classList.toggle("hidden", visibleCount > 0);
+  }
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory = btn.getAttribute("data-filter");
+      filterProjects();
+    });
+  });
+
+  searchInput.addEventListener("input", filterProjects);
+
+  // 5. ĐẾM KÝ TỰ TRONG Ô TIN NHẮN
+  const messageInput = document.getElementById("message");
+  const charCount = document.getElementById("char-count");
+
+  messageInput.addEventListener("input", () => {
+    const length = messageInput.value.length;
+    charCount.textContent = `${length} / 300`;
+  });
+
+  // 6. VALIDATE FORM LIÊN HỆ (KIỂM TRA NHIỀU ĐIỀU KIỆN)
+  const contactForm = document.getElementById("contact-form");
+  const fullnameInput = document.getElementById("fullname");
+  const emailInput = document.getElementById("email");
+
+  const nameError = document.getElementById("name-error");
+  const emailError = document.getElementById("email-error");
+  const messageError = document.getElementById("message-error");
+  const formSuccess = document.getElementById("form-success");
+
+  contactForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let isValid = true;
+    formSuccess.classList.add("hidden");
+
+    // Kiểm tra họ tên (>= 2 ký tự)
+    const nameVal = fullnameInput.value.trim();
+    if (nameVal === "") {
+      nameError.textContent = "Vui lòng nhập họ và tên.";
+      isValid = false;
+    } else if (nameVal.length < 2) {
+      nameError.textContent = "Họ và tên phải có ít nhất 2 ký tự.";
+      isValid = false;
+    } else {
+      nameError.textContent = "";
+    }
+
+    // Kiểm tra định dạng email
+    const emailVal = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailVal === "") {
+      emailError.textContent = "Vui lòng nhập địa chỉ email.";
+      isValid = false;
+    } else if (!emailRegex.test(emailVal)) {
+      emailError.textContent = "Email không đúng định dạng.";
+      isValid = false;
+    } else {
+      emailError.textContent = "";
+    }
+
+    // Kiểm tra nội dung tin nhắn (>= 10 ký tự)
+    const msgVal = messageInput.value.trim();
+    if (msgVal === "") {
+      messageError.textContent = "Vui lòng nhập nội dung tin nhắn.";
+      isValid = false;
+    } else if (msgVal.length < 10) {
+      messageError.textContent = "Tin nhắn cần tối thiểu 10 ký tự.";
+      isValid = false;
+    } else {
+      messageError.textContent = "";
+    }
+
+    if (isValid) {
+      formSuccess.classList.remove("hidden");
+      contactForm.reset();
+      charCount.textContent = "0 / 300";
+    }
+  });
+
+  // 7. HIỆU ỨNG XUẤT HIỆN KHI CUỘN (SCROLL REVEAL)
+  const revealElements = document.querySelectorAll(".reveal");
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+        }
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  revealElements.forEach((el) => revealObserver.observe(el));
+});
