@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giới thiệu bản thân | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- HEADER & MENU -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="#about" class="logo">My<span>Portfolio</span></a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link">Giới thiệu</a></li>
+          <li><a href="#skills" class="nav-link">Kỹ năng</a></li>
+          <li><a href="#projects" class="nav-link">Dự án</a></li>
+          <li><a href="#contact" class="nav-link">Liên hệ</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Nút chuyển Dark/Light mode -->
+        <button id="theme-toggle" class="icon-btn" aria-label="Đổi giao diện sáng/tối" title="Đổi giao diện">
+          🌙
+        </button>
+        <!-- Nút Menu Hamburger cho Mobile -->
+        <button id="hamburger" class="hamburger" aria-label="Mở menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- PHẦN GIỚI THIỆU -->
+    <section id="about" class="hero section">
+      <div class="container hero-container">
+        <div class="hero-content reveal">
+          <p class="badge">Xin chào, mình là</p>
+          <h1>Nguyễn Văn A</h1>
+          <h2>Sinh viên ngành Công nghệ Thông tin</h2>
+          <p class="hero-desc">
+            Mình đam mê lập trình Web, xây dựng giao diện người dùng trực quan, tối ưu trải nghiệm trên mọi thiết bị và luôn sẵn sàng học hỏi các công nghệ mới.
+          </p>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">Xem dự án</a>
+            <a href="#contact" class="btn btn-outline">Liên hệ ngay</a>
+          </div>
+        </div>
+
+        <div class="hero-avatar reveal">
+          <div class="avatar-circle">
+            <span>NVA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANH SÁCH KỸ NĂNG -->
+    <section id="skills" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title reveal">Kỹ năng chuyên môn</h2>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h3>Frontend Cơ bản</h3>
+            <p>HTML5 ngữ nghĩa, CSS3, Flexbox, CSS Grid, Responsive Design.</p>
+            <div class="skill-tags">
+              <span>HTML5</span>
+              <span>CSS3</span>
+              <span>Responsive</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Lập trình JavaScript</h3>
+            <p>ES6+, thao tác DOM, xử lý sự kiện, Fetch API, LocalStorage.</p>
+            <div class="skill-tags">
+              <span>JavaScript</span>
+              <span>DOM</span>
+              <span>REST API</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Công cụ & Quản lý mã nguồn</h3>
+            <p>Sử dụng Git/GitHub để quản lý phiên bản và làm việc nhóm.</p>
+            <div class="skill-tags">
+              <span>Git</span>
+              <span>GitHub</span>
+              <span>VS Code</span>
+            </div>
+          </div>
+
+          <div class="skill-card reveal">
+            <h3>Cơ sở dữ liệu & Backend</h3>
+            <p>Kiến thức nền tảng về thiết kế CSDL quan hệ và lập trình phía server.</p>
+            <div class="skill-tags">
+              <span>SQL</span>
+              <span>Node.js</span>
+              <span>PHP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANH SÁCH DỰ ÁN (>= 3 dự án) -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Dự án tiêu biểu</h2>
+
+        <!-- Thanh tìm kiếm & lọc dự án -->
+        <div class="project-controls reveal">
+          <input
+            type="text"
+            id="project-search"
+            placeholder="Tìm kiếm dự án theo tên hoặc công nghệ..."
+            aria-label="Tìm kiếm dự án"
+          />
+          <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">Tất cả</button>
+            <button class="filter-btn" data-filter="web">Website</button>
+            <button class="filter-btn" data-filter="app">Ứng dụng JS</button>
+            <button class="filter-btn" data-filter="ui">UI/UX</button>
+          </div>
+        </div>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Dự án 1 -->
+          <article class="project-card reveal" data-category="web">
+            <div class="project-thumb thumb-1">E-Commerce</div>
+            <div class="project-body">
+              <span class="project-tag">Website</span>
+              <h3>Website Bán Sách Trực Tuyến</h3>
+              <p>Giao diện cửa hàng sách với tính năng giỏ hàng, lọc danh mục và thanh toán cơ bản.</p>
+              <div class="project-tech">HTML • CSS Grid • JavaScript</div>
+              <a href="#" class="project-link">Xem chi tiết →</a>
+            </div>
+          </article>
+
+          <!-- Dự án 2 -->
+          <article class="project-card reveal" data-category="app">
+            <div class="project-thumb thumb-2">Task Manager</div>
+            <div class="project-body">
+              <span class="project-tag">Ứng dụng JS</span>
+              <h3>Ứng Dụng Quản Lý Công Việc (To-Do)</h3>
+              <p>Cho phép thêm, sửa, xóa, đánh dấu hoàn thành và lưu trữ dữ liệu bằng LocalStorage.</p>
+              <div class="project-tech">JavaScript ES6 • LocalStorage</div>
+              <a href="#" class="project-link">Xem chi tiết →</a>
+            </div>
+          </article>
+
+          <!-- Dự án 3 -->
+          <article class="project-card reveal" data-category="ui">
+            <div class="project-thumb thumb-3">Landing Page</div>
+            <div class="project-body">
+              <span class="project-tag">UI/UX</span>
+              <h3>Landing Page Khóa Học Lập Trình</h3>
+              <p>Thiết kế trang giới thiệu khóa học chuẩn Responsive cho desktop, tablet và mobile.</p>
+              <div class="project-tech">HTML5 • Flexbox • CSS Animation</div>
+              <a href="#" class="project-link">Xem chi tiết →</a>
+            </div>
+          </article>
+
+          <!-- Dự án 4 -->
+          <article class="project-card reveal" data-category="app">
+            <div class="project-thumb thumb-4">Weather App</div>
+            <div class="project-body">
+              <span class="project-tag">Ứng dụng JS</span>
+              <h3>Ứng Dụng Dự Báo Thời Tiết</h3>
+              <p>Tra cứu nhiệt độ, độ ẩm theo tên thành phố thông qua dữ liệu API thời gian thực.</p>
+              <div class="project-tech">HTML • CSS • Fetch API</div>
+              <a href="#" class="project-link">Xem chi tiết →</a>
+            </div>
+          </article>
+        </div>
+
+        <p id="no-projects" class="no-results hidden">Không tìm thấy dự án phù hợp.</p>
+      </div>
+    </section>
+
+    <!-- FORM LIÊN HỆ -->
+    <section id="contact" class="section section-alt">
+      <div class="container contact-container">
+        <h2 class="section-title reveal">Liên hệ với mình</h2>
+        <form id="contact-form" class="contact-form reveal" novalidate>
+          <div class="form-group">
+            <label for="fullname">Họ và tên *</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Nhập họ tên của bạn" />
+            <small class="error-msg" id="name-error"></small>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" />
+            <small class="error-msg" id="email-error"></small>
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label for="message">Nội dung tin nhắn *</label>
+              <span id="char-count" class="char-count">0 / 300</span>
+            </div>
+            <textarea id="message" name="message" rows="4" maxlength="300" placeholder="Nhập nội dung cần trao đổi (tối thiểu 10 ký tự)..."></textarea>
+            <small class="error-msg" id="message-error"></small>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full">Gửi tin nhắn</button>
+          <p id="form-success" class="success-msg hidden">Gửi thành công! Cảm ơn bạn đã liên hệ.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p>© <span id="current-year"></span> Nguyễn Văn A. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:example@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
